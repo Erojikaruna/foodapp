@@ -40,8 +40,14 @@ const Header = () => {
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-  const { cloudinaryImageId, name, cuisines, costForTwoString, avgRating } =
-    resData?.data;
+  const {
+    cloudinaryImageId,
+    name,
+    cuisines,
+    costForTwoString,
+    avgRating,
+    slaString,
+  } = resData?.data;
   return (
     <div className="res-card">
       <img
@@ -56,6 +62,7 @@ const RestaurantCard = (props) => {
       <h4>{cuisines.join(", ")}</h4>
       <h5>{costForTwoString}</h5>
       <h5>{avgRating}</h5>
+      <h5>{slaString}</h5>
     </div>
   );
 };
