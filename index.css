@@ -69,3 +69,11 @@
   cursor: pointer;
   margin: 5px;
 }
+.login {
+  padding: 0px 10px;
+  cursor: pointer;
+  margin: 5px;
+}
+.filter {
+  display: flex;
+}

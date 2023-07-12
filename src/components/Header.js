@@ -1,6 +1,9 @@
 import { LOGO_URL } from "../utils/constants";
 import Login from "./Login";
+import { useState } from "react";
 const Header = () => {
+  const [isVisible, setIsVisible] = useState("Login");
+
   return (
     <div className="header">
       <div className="logo container">
@@ -12,9 +15,19 @@ const Header = () => {
           <li>About Us</li>
           <li>Contact Us</li>
           <li>Cart</li>
+          <button
+            className="login"
+            onClick={() => {
+              isVisible === "Login"
+                ? setIsVisible("Logout")
+                : setIsVisible("Login");
+            }}
+          >
+            {isVisible}
+          </button>
         </ul>
-        <Login />
       </div>
+      {isVisible && <Login />}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 const Login = () => {
   <div>
-    <button>Login</button>
+    <button>Log In</button>
+    <input type="text">enter your name</input>
   </div>;
 };
 export default Login;
