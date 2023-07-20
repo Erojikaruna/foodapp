@@ -73,3 +73,8 @@ import {component} from "path";
   # useeffect(()=>{},[])
 
 Conditional Rendering - rendering on the basis of conditions
+
+# two types of Routing
+
+1.client side routing
+2.server side routing
