@@ -78,3 +78,12 @@ Conditional Rendering - rendering on the basis of conditions
 
 1.client side routing
 2.server side routing
+
+# Redux Toolkoit
+
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to our app
+- create Slice(cartSlice)
+- dispatch(action)
+- Selector

@@ -40,10 +40,11 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="px-12">
-      <div className="flex m-5 bg-gray-900 justify-between">
+    <div className="px-12 ">
+      <div className="flex m-5 bg-slate-800 justify-between">
         <div className="p-5 m-4 pl-32">
           <input
+            className="outline-none p-1 w-80"
             type="text"
             placeholder="search"
             value={searchText}
