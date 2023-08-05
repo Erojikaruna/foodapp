@@ -18,26 +18,52 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
+      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&page_type=DESKTOP_WEB_LISTING"
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.385044&lng=78.486671&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(json);
+    //console.log(json);
+
+    async function checkJsonData(jsonData) {
+      for (let i = 0; i < jsonData?.data?.cards.length; i++) {
+        // initialize checkData for Swiggy Restaurant data
+        let checkData =
+          json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants;
+
+        // if checkData is not undefined then return it
+        if (checkData !== undefined) {
+          return checkData;
+        }
+      }
+    }
+
+    const resData = await checkJsonData(json);
+
+    setListOfRestaurant(resData);
+    setFilteredRestaurant(resData);
+
     //Optional Chaining
-    setListOfRestaurant(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+
+    /* setListOfRestaurant(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurant(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    ); */
   };
 
   const onlineStatus = useOnlineStatus();
 
-  if (onlineStatus === false)
+  if (onlineStatus === false) {
     return <h2>You're offline!! check your network connection;</h2>;
-
-  /* Conditional Rendering
-  if (listOfRestaurants.length === 0) {
-    return <h1>Loading....</h1>;
+  }
+  //Conditional Rendering
+  /* if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
   } */
 
-  return listOfRestaurants.length === 0 ? (
+  return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="px-12 ">
@@ -46,6 +72,7 @@ const Body = () => {
           <input
             className="outline-none p-1 w-80"
             type="text"
+            data-testid="searchInput"
             placeholder="search"
             value={searchText}
             onChange={(e) => {
@@ -60,7 +87,7 @@ const Body = () => {
               console.log(searchText);
 
               const filteredRestaurant = listOfRestaurants.filter((res) =>
-                res.data.name.toLowerCase().includes(searchText.toLowerCase())
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
               setFilteredRestaurant(filteredRestaurant);
             }}
@@ -74,7 +101,7 @@ const Body = () => {
             onClick={() => {
               //Filter logic here
               const filteredList = listOfRestaurants.filter(
-                (res) => res.data.avgRating > 4
+                (res) => res.info.avgRating > 4
               );
               setFilteredRestaurant(filteredList);
             }}
@@ -84,9 +111,12 @@ const Body = () => {
         </div>
       </div>
       <div className="flex flex-wrap ">
-        {filteredRestaurant.map((restaurant, index) => (
-          <Link key={index} to={"/restaurants/" + restaurant.data.id}>
-            <RestaurantCard resData={restaurant} />
+        {filteredRestaurant.map((restaurant) => (
+          <Link
+            key={restaurant?.info.id}
+            to={"/restaurants/" + restaurant?.info.id}
+          >
+            <RestaurantCard resData={restaurant?.info} />
           </Link>
         ))}
         {/*  <RestaurantCard resData={resList[0]} />

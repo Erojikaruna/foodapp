@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
+
   const {
     name,
     cloudinaryImageId,
@@ -11,9 +12,12 @@ const RestaurantCard = (props) => {
     costForTwoString,
     avgRating,
     slaString,
-  } = resData?.data;
+  } = resData;
   return (
-    <div className="m-4 p-4 w-64 bg-gray-100 rounded-lg hover:scale-110 transition duration-0 hover:duration-300 ">
+    <div
+      data-testid="resCard"
+      className="m-4 p-4 w-64 bg-gray-100 rounded-lg hover:scale-110 transition duration-0 hover:duration-300 "
+    >
       <img
         className="rounded-md"
         alt="res-logo"

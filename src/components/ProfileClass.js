@@ -39,9 +39,11 @@ class ProfileClass extends React.Component {
     console.log("render");
     return (
       <div>
-        <img src={avatar_url} />
-        <h4>Name:{name}</h4>
-        <h5>Location:{location}</h5>
+        <img className="pl-2 w-60 rounded-full" src={avatar_url} />
+        <div className="p-3 m-2 pl-12">
+          <h4>Name:{name}</h4>
+          <h5>Location:{location}</h5>
+        </div>
       </div>
     );
   }
