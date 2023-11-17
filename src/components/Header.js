@@ -21,7 +21,7 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="sticky top-0 bg-white z-10 shadow-md">
+    <div className="sticky top-0 bg-white z-10 shadow-md ">
       <div className="p-3 w-full flex justify-between items-center">
         <div className="">
           <img className="w-24 rounded-lg " src={LOGO_URL} />

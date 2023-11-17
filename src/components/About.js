@@ -1,4 +1,3 @@
-import Profile from "./profile";
 import ProfileClass from "./ProfileClass";
 import React from "react";
 

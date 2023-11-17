@@ -18,11 +18,9 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&page_type=DESKTOP_WEB_LISTING"
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.385044&lng=78.486671&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    //console.log(json);
 
     async function checkJsonData(jsonData) {
       for (let i = 0; i < jsonData?.data?.cards.length; i++) {
@@ -68,7 +66,7 @@ const Body = () => {
   ) : (
     <div className="px-12 ">
       <div className="flex m-5 bg-slate-800 justify-between">
-        <div className="p-5 m-4 pl-32">
+        <div className="p-2 m-4 pl-32">
           <input
             className="outline-none p-1 w-80"
             type="text"
